@@ -6,7 +6,7 @@
         <h2>Editar Superhéroe</h2>
     </div>
     <div class="card-body">
-        <form action="{{ route('superheroes.update', $superheroe->id) }}" method="POST">
+        <form action="{{ route('superheroes.update', $superheroe->id) }}" method="POST" enctype="multipart/form-data">
             @csrf
             @method('PUT')
             
@@ -20,10 +20,12 @@
                 <input type="text" class="form-control" id="superhero_name" name="superhero_name" value="{{ $superheroe->superhero_name }}" required>
             </div>
             
+            @if($superheroe->photo_url)
             <div class="mb-3">
-                <label for="photo_url" class="form-label">URL de la Foto:</label>
-                <input type="url" class="form-control" id="photo_url" name="photo_url" value="{{ $superheroe->photo_url }}" required>
+                <label class="form-label">Foto actual:</label>
+                <img src="{{ asset('storage/' . $superheroe->photo_url) }}" class="img-thumbnail" style="max-height: 200px;">
             </div>
+            @endif
             
             <div class="mb-3">
                 <label for="additional_info" class="form-label">Información Adicional:</label>

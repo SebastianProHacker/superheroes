@@ -1,3 +1,4 @@
+@php use App\Superheroe; @endphp
 @extends('layouts.app')
 
 @section('content')
@@ -20,9 +21,10 @@
                 <td>{{ $superheroe->real_name }}</td>
                 <td>{{ $superheroe->superhero_name }}</td>
                 <td>
+                    <img src="{{ asset('storage/' . $superheroe->photo_url) }}" class="img-thumbnail" style="max-height: 50px;">
                     <a href="{{ route('superheroes.show', $superheroe->id) }}" class="btn btn-sm btn-info">Ver</a>
                     <a href="{{ route('superheroes.edit', $superheroe->id) }}" class="btn btn-sm btn-warning">Editar</a>
-                    <form action="{{ route('superheroes.destroy', $superheroe->id) }}" method="POST" style="display:inline">
+                    <form action="{{ route('superheroes.destroy', $superheroe) }}" method="POST" style="display:inline">
                         @csrf
                         @method('DELETE')
                         <button type="submit" class="btn btn-sm btn-danger">Eliminar</button>
@@ -32,4 +34,9 @@
         @endforeach
     </tbody>
 </table>
+<div class="mt-4">
+    <a href="{{ route('superheroes.trashed') }}" class="btn btn-warning">
+        Ver eliminados ({{ Superheroe::onlyTrashed()->count() }})
+    </a>
+</div>
 @endsection

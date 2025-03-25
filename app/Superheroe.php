@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Superheroe extends Model
 {
@@ -12,4 +13,8 @@ class Superheroe extends Model
         'photo_url',
         'additional_info',
     ];
+
+    use SoftDeletes;
+
+    protected $dates = ['deleted_at'];
 }

@@ -6,7 +6,7 @@
         <h2>Registrar Nuevo Superhéroe</h2>
     </div>
     <div class="card-body">
-        <form action="{{ route('superheroes.store') }}" method="POST">
+        <form action="{{ route('superheroes.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="mb-3">
                 <label for="real_name" class="form-label">Nombre Real:</label>
@@ -19,10 +19,10 @@
             </div>
             
             <div class="mb-3">
-                <label for="photo_url" class="form-label">URL de la Foto:</label>
-                <input type="url" class="form-control" id="photo_url" name="photo_url" required>
+                <label for="photo" class="form-label">Foto:</label>
+                <input type="file" class="form-control" id="photo" name="photo" required>
             </div>
-            
+                        
             <div class="mb-3">
                 <label for="additional_info" class="form-label">Información Adicional:</label>
                 <textarea class="form-control" id="additional_info" name="additional_info" rows="4" required></textarea>
